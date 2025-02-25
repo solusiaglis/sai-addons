@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2025 PT Solusi Aglis Indonesia
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl-3.0) -->
+<odoo>
+    <template id="report_purchase_request_as_tor">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout_standard">
+                    <t t-set="company" t-value="company or res_company" />
+
+                    <div class="page">
+                        <div class="oe_structure" />
+
+                        <style>
+                            ol {
+                                counter-reset: item;
+                                padding-left: 20px;
+                            }
+
+                            ol li {
+                                display: block;
+                                position: relative;
+                                padding-left: 20px;
+                            }
+
+                            ol li:before {
+                                content: counters(item, ".") ". ";
+                                counter-increment: item;
+                                position: absolute;
+                                left: 0;
+                            }
+                        </style>
+
+                        <h2 class="mt16">
+                            Term of Reference
+                            <br />
+                            <h4>
+                                <span t-field="o.name" />
+                            </h4>
+                        </h2>
+                        <div class="row mt32 mb32">
+                            <div class="col-auto">
+                                <strong>Implementation Date</strong>
+                                <br />
+                                <strong>Start:</strong> <span t-field="o.date_start" />
+                                <br />
+                                <strong>End: </strong> <span t-field="o.date_end" />
+                            </div>
+                            <div class="col-auto">
+                                <strong>Source:</strong>
+                                <br />
+                                <span t-field="o.origin" />
+                            </div>
+
+                            <div class="col-auto">
+                                <strong>Total Estimated Cost:</strong>
+                                <br />
+                                <span t-field="o.estimated_cost" />
+                            </div>
+                        </div>
+
+                        <div class="row mt32 mb32">
+
+                            <div class="col-auto">
+                                <strong>Requested by:</strong>
+                                <br />
+                                <span t-field="o.requested_by" />
+                            </div>
+                            <div class="col-auto">
+                                <strong>Approver:</strong>
+                                <br />
+                                <span t-field="o.assigned_to" />
+                            </div>
+                            <div class="col-auto">
+                                <strong>Warehouse:</strong>
+                                <br />
+                                <span t-field="o.picking_type_id" />
+                            </div>
+                        </div>
+
+                        <div
+                            class="row mb32"
+                            style="border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px;"
+                        >
+                            <div class="col-12">
+                                <!-- <strong>Description:</strong> -->
+                                <!-- <br /> -->
+                                <span t-field="o.description" />
+                            </div>
+                        </div>
+                        <t t-if="o.line_ids">
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <strong>Description</strong>
+                                        </th>
+                                        <th groups="analytic.group_analytic_accounting">
+                                            <strong>Analytic Account</strong>
+                                        </th>
+                                        <th class="text-right">
+                                            <strong>Qty</strong>
+                                        </th>
+                                        <th class="text-center" groups="uom.group_uom">
+                                            <strong>Product UoM</strong>
+                                        </th>
+                                        <th>
+                                            <strong>Estimated Cost</strong>
+                                        </th>
+                                        <th class="text-right">
+                                            <strong>Requested Date</strong>
+                                        </th>
+                                    </tr>
+                                 </thead>
+                                <tbody>
+                                    <tr t-foreach="o.line_ids" t-as="line_ids">
+                                        <tr>
+                                            <td>
+                                                <span t-field="line_ids.name" />
+                                            </td>
+                                            <td
+                                                groups="analytic.group_analytic_accounting"
+                                            >
+                                                <span
+                                                    t-field="line_ids.analytic_account_id"
+                                                />
+                                            </td>
+                                            <td class="text-right">
+                                                <span t-field="line_ids.product_qty" />
+                                            </td>
+                                            <t>
+                                                <td
+                                                    class="text-center"
+                                                    groups="uom.group_uom"
+                                                >
+                                                    <span
+                                                        t-field="line_ids.product_uom_id.category_id.name"
+                                                    />
+                                                </td>
+                                            </t>
+                                            <td class="text-right">
+                                                <span
+                                                    t-field="line_ids.estimated_cost"
+                                                />
+                                            </td>
+                                            <td class="text-right">
+                                                <span
+                                                    t-field="line_ids.date_required"
+                                                />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="8">
+                                                <span
+                                                    t-field="line_ids.specifications"
+                                                />
+                                            </td>
+                                        </tr>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr class="border-black o_total">
+                                        <td colspan="3">Total</td>
+                                        <td>
+                                            <span t-field="o.estimated_cost" />
+                                        </td>
+                                        <td colspan="2" />
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </t>
+                        <div class="oe_structure" />
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
