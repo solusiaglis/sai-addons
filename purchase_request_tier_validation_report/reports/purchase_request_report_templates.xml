@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Create custom assets for report -->
+    <template
+        id="purchase_request_validation_report_assets"
+        inherit_id="web.report_assets_common"
+    >
+        <xpath expr="." position="inside">
+            <style>
+                .o_boxed_layout .review-table tbody tr,
+                .o_boxed_layout .review-table tbody td {
+                    background-color: transparent !important;
+                    color: #000000 !important;
+                }
+                /* Override any boxed layout specific styling */
+                .o_boxed_layout .review-table {
+                    background-color: transparent !important;
+                }
+            </style>
+        </xpath>
+    </template>
+
+    <!-- Update the report template -->
+    <template
+        id="report_purchaserequest_validation_document"
+        inherit_id="purchase_request.report_purchase_request"
+    >
+        <xpath expr="//div[hasclass('page')]" position="after">
+            <t t-if="o.review_ids">
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <h4>Reviews</h4>
+                        <!-- <table class="table table-sm table-bordered review-table"> -->
+                        <table class="table table-sm o_main_table">
+                            <thead>
+                                <tr>
+                                    <th>Seq</th>
+                                    <th>Requested by</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>Todo by</th>
+                                    <th>Done by</th>
+                                    <th>Validation Date</th>
+                                    <th>Comment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.review_ids" t-as="review">
+                                    <tr>
+                                        <td><span t-field="review.sequence" /></td>
+                                        <td><span
+                                                t-field="review.requested_by.name"
+                                            /></td>
+                                        <td><span t-field="review.name" /></td>
+                                        <td><span t-field="review.status" /></td>
+                                        <td><span t-field="review.todo_by" /></td>
+                                        <td><span t-field="review.done_by" /></td>
+                                        <td><span t-field="review.reviewed_date" /></td>
+                                        <td><span t-field="review.comment" /></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+</odoo>
