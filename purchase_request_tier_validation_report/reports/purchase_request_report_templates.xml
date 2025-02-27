@@ -23,7 +23,7 @@
     <!-- Update the report template -->
     <template
         id="report_purchaserequest_validation_document"
-        inherit_id="purchase_request.report_purchase_request"
+        inherit_id="purchase_request_as_tor.report_purchase_request_as_tor"
     >
         <xpath expr="//div[hasclass('page')]" position="after">
             <t t-if="o.review_ids">

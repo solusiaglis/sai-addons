@@ -47,9 +47,9 @@
                                 <strong>End: </strong> <span t-field="o.date_end" />
                             </div>
                             <div class="col-auto">
-                                <strong>Source:</strong>
+                                <strong>Project Name:</strong>
                                 <br />
-                                <span t-field="o.origin" />
+                                <span t-field="o.project_name" />
                             </div>
 
                             <div class="col-auto">
@@ -83,8 +83,6 @@
                             style="border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px;"
                         >
                             <div class="col-12">
-                                <!-- <strong>Description:</strong> -->
-                                <!-- <br /> -->
                                 <span t-field="o.description" />
                             </div>
                         </div>

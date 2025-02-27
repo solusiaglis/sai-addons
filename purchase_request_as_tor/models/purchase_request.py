@@ -19,3 +19,7 @@ class PurchaseRequest(models.Model):
         help="Detailed description of the ToR requirements",  # Added help text
         tracking=True,  # Added tracking for description changes
     )
+
+    project_name = fields.Char(
+        "Project Name", tracking=True, help="Put the project name related to this TOR"
+    )

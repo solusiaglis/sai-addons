@@ -21,9 +21,18 @@
             </field>
 
             <field name="date_start" position="after">
-                <field name="date_end">End Date</field>
+                <field
+                    name="date_end"
+                    attrs="{'readonly': [('is_editable','=', False)]}"
+                />
             </field>
 
+            <field name="origin" position="before">
+                <field
+                    name="project_name"
+                    attrs="{'readonly': [('is_editable','=', False)]}"
+                />
+            </field>
             <field name="description" position="replace" />
 
             <field name="picking_type_id" position="attributes">
@@ -32,7 +41,11 @@
 
             <xpath expr="//group[last()]" position="after">
                 <group string="Description">
-                    <field name="description" nolabel="1" />
+                    <field
+                        name="description"
+                        attrs="{'readonly': [('is_editable','=', False)]}"
+                        nolabel="1"
+                    />
                 </group>
             </xpath>
 
