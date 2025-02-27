@@ -7,7 +7,10 @@
     "author": "PT Solusi Aglis Indonesia",
     "category": "Purchase",
     "summary": "Add validation history to purchase request report",
-    "depends": ["purchase_request_tier_validation"],
+    "depends": [
+        "purchase_request_as_tor",
+        "purchase_request_tier_validation",
+    ],
     "website": "https://github.com/solusiaglis/sai-addons",
     "data": [
         "reports/purchase_request_report_templates.xml",
