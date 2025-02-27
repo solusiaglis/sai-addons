@@ -20,10 +20,14 @@
                 <attribute name="string">Start Date</attribute>
             </field>
 
+            <field name="date_start" position="attributes">
+                <attribute name="required">1</attribute>
+            </field>
             <field name="date_start" position="after">
                 <field
                     name="date_end"
                     attrs="{'readonly': [('is_editable','=', False)]}"
+                    required="1"
                 />
             </field>
 
