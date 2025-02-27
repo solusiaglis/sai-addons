@@ -158,11 +158,11 @@
                                 </tbody>
                                 <tfoot>
                                     <tr class="border-black o_total">
-                                        <td colspan="3">Total</td>
+                                        <td colspan="4">Total</td>
                                         <td>
                                             <span t-field="o.estimated_cost" />
                                         </td>
-                                        <td colspan="2" />
+                                        <td colspan="1" />
                                     </tr>
                                 </tfoot>
                             </table>
